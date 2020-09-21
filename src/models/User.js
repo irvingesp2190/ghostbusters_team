@@ -8,6 +8,7 @@ new Schema({
 }, {
     timestamps: true
 });
+//
 
 UserSchema.methods.encrypPassword = async password => {
     const salt = await bcrypt.genSalt(10);
