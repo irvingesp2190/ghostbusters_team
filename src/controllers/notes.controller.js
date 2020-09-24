@@ -20,7 +20,7 @@ notesCtrl.renderNotes = async (req, res) => {
   };
    
   notesCtrl.renderEditForm = async (req, res) => {
-    const note = await Note.findById(req.params.id);
+    const note = await Note.findById(req.params.id).lean();
     res.render('notes/edit-note',{ note });
   };
   
@@ -32,7 +32,7 @@ notesCtrl.renderNotes = async (req, res) => {
   };
   
   notesCtrl.deleteNote = async (req, res) => {
-    await console.log(req.params.id);
+    await Note.findByIdAndDelete(req.params.id);
     req.flash('success_msg', 'Note Deleted Successfully');
     res.redirect('/notes');
   };
